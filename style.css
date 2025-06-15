@@ -214,3 +214,20 @@ footer {
     width: 90%;
   }
 }
+.social-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.social-links a {
+  font-size: 1.8rem;
+  color: #d4af37;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: scale(1.2);
+  color: #f0e68c;
+}
