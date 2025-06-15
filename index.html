@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SHINE Auto Detailing</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#photos" class="shimmer-text">Photos</a>
+      <a href="#quote" class="shimmer-text">Quote Request</a>
+      <a href="#contact" class="shimmer-text">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-logo">
+        <img src="logo.png" alt="SHINE Logo">
+      </div>
+      <div class="hero-text">
+        <h1 class="shine-text shimmer-text">SHINE</h1>
+        <p class="subtext shimmer-text">Premium Auto Detailing</p>
+        <p class="slogan shimmer-text">We leave every car with our <span class="highlight shimmer-text">Signature Shine</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photos -->
+  <section id="photos" class="page-section">
+    <h2 class="shimmer-text">Our Work</h2>
+    <p>Hover over picture to see our work!</p>
+    <div class="photo-grid">
+      <div class="photo-comparison">
+        <img src="photos/car1-before.png" alt="Before" class="before">
+        <img src="photos/car1-after.png" alt="After" class="after">
+      </div>
+      <div class="photo-comparison">
+        <img src="photos/car2-before.png" alt="Before" class="before">
+        <img src="photos/car2-after.png" alt="After" class="after">
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Request Form -->
+  <section id="quote" class="page-section">
+    <h2 class="shimmer-text">Request a Custom Quote</h2>
+    <p class="subtext">Every car is different. Fill out this form for a quote on your unique ride.</p>
+
+    <form id="quoteForm" action="https://formsubmit.co/ajax/shinemobileia@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+
+      <input type="text" name="firstName" placeholder="First Name" required>
+      <input type="text" name="lastName" placeholder="Last Name" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <input type="text" name="address" placeholder="Address" required>
+
+      <select name="serviceType" required>
+        <option value="" disabled selected>Interior or Exterior Service</option>
+        <option value="Interior">Interior Detail</option>
+        <option value="Exterior">Exterior Detail</option>
+        <option value="Both">Full Interior & Exterior</option>
+      </select>
+
+      <input type="text" name="make" placeholder="Car Make" required>
+      <input type="text" name="model" placeholder="Car Model" required>
+      <input type="number" name="year" placeholder="Car Year" required min="1900" max="2099">
+
+      <div class="button-row">
+        <button type="submit">Request Quote</button>
+      </div>
+    </form>
+
+    <div id="quoteResponse"></div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="page-section">
+    <h2 class="shimmer-text">Contact</h2>
+    <p>Email: shinemobileia@gmail.com</p>
+    <p>Phone: (515) 664-4900</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 SHINE Auto Detailing | All rights reserved.</p>
+    <p>Website Designed & Developed by Hany Graphic Designs</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    let isScrolling;
+    window.addEventListener('scroll', () => {
+      document.body.classList.add('scrolling');
+      clearTimeout(isScrolling);
+      isScrolling = setTimeout(() => {
+        document.body.classList.remove('scrolling');
+      }, 150);
+    });
+
+    document.getElementById("quoteForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          document.getElementById("quoteResponse").innerText = "Thanks! We'll get back to you shortly.";
+          form.reset();
+        } else {
+          document.getElementById("quoteResponse").innerText = "Something went wrong. Please try again.";
+        }
+      })
+      .catch(() => {
+        document.getElementById("quoteResponse").innerText = "There was an error sending the form.";
+      });
+    });
+  </script>
+
+</body>
+</html>
