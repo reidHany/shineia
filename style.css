@@ -6,11 +6,9 @@
 }
 
 body {
-  background-color: #0d0d0d;
-  background-image: url("carbon-fiber.png");
-  background-size: 450px 436px;
+  background-color: #161616;
   background-attachment: fixed;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Lexend Mega', Medium;
   color: #fff;
   padding-bottom: 60px;
 }
@@ -56,13 +54,13 @@ body {
 }
 
 .hero-logo img {
-  max-width: 400px;
+  max-width: 350px;
 }
 
 .slogan {
   font-size: 1.2rem;
   font-style: italic;
-  text-align: right;
+  text-align: center;
   margin-top: 40px;
   padding-right: 10px;
   max-width: 450px;
